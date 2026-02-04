@@ -1,0 +1,170 @@
+'use client';
+
+import { useState } from "react";
+import Navbar from "../components/Navbar";
+import InfiniteMenu from "../components/InfiniteMenu";
+import PixelCard from "../components/PixelCard";
+import Footer from "../components/Footer";
+import FAQ from "../components/FAQ";
+import TeamPopup from "../components/TeamPopup";
+
+const items = [
+  { image: "/pixelit_logo.png", link: "#", title: "", description: "" },
+  { image: "/pixelit_logo.png", link: "#", title: "", description: "" },
+  { image: "/pixelit_logo.png", link: "#", title: "", description: "" },
+  { image: "/pixelit_logo.png", link: "#", title: "", description: "" },
+];
+
+export default function AboutPage() {
+  const [activeMember, setActiveMember] = useState<null | {
+    name: string;
+    role: string;
+    skill: string;
+    image: string;
+    description: string;
+  }>(null);
+
+  const team = [
+    {
+      name: "Akash Verma",
+      role: "Founder & CEO",
+      skill: "Software Developer",
+      image: "/akash.png",
+      description:
+        "Visionary behind PixelIt, focused on building scalable tech solutions, modern web platforms and leading innovation-driven teams."
+    },
+    {
+      name: "Harsh Ranjan",
+      role: "Co-Founder",
+      skill: "Robotics Engineer",
+      image: "/harsh.png",
+      description:
+        "Robotics enthusiast working on automation, embedded systems and intelligent hardware-software integration."
+    },
+    {
+      name: "Madhu Mishra",
+      role: "Co-Founder",
+      skill: "Graphic Designer",
+      image: "/madhu.png",
+      description:
+        "Creative mind shaping PixelIt’s visual identity through branding, UI/UX design and digital storytelling."
+    },
+    {
+      name: "Rimisha Kumari",
+      role: "Co-Founder",
+      skill: "Software Developer",
+      image: "/rimisha.png",
+      description:
+        "Software developer contributing to full-stack development, system design and scalable applications."
+    }
+  ];
+
+  return (
+    <div
+      className="min-h-screen bg-black text-white"
+      style={{ fontFamily: "var(--font-pixel)" }}
+    >
+      <Navbar />
+
+      <div className="max-w-7xl mx-auto px-6 pt-36 pb-24 space-y-32">
+
+        <section className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+          <div className="lg:pr-10">
+            <span className="inline-block mb-6 border border-yellow-400 px-4 py-1 text-xs tracking-widest text-yellow-400">
+              ABOUT US
+            </span>
+
+            <h1 className="text-5xl tracking-widest mb-8">
+              WE ARE <span className="text-blue-500">PIXELIT</span>
+            </h1>
+
+            <p className="text-zinc-400 max-w-xl leading-relaxed tracking-wide text-base">
+              We believe in building things; pixel by pixel, hence the name{" "}
+              <span className="text-[#facc18]">Pixel It</span>.
+              <br /><br />
+              We’re on a mission to revolutionize the world, one pixel at a time.
+              <br /><br />
+              From web design and graphic branding to robotics, automation, seminars,
+              and webinars, we focus on creating and delivering services that truly matter.
+              <br /><br />
+              Whatever your vision is, Pixel It has you covered.
+            </p>
+          </div>
+
+          <div className="space-y-6">
+            <div className="border-2 border-zinc-800 bg-zinc-950 p-6 rounded-xl flex justify-center">
+              <img
+                src="/pixelit_logo.png"
+                alt="PixelIt Logo"
+                className="h-10 object-contain opacity-90"
+              />
+            </div>
+
+            <div className="border-2 border-zinc-800 bg-zinc-950 p-6 rounded-xl">
+              <img
+                src="/team.jpeg"
+                alt="PixelIt Team"
+                className="w-full max-w-sm mx-auto rounded-lg opacity-90"
+              />
+            </div>
+          </div>
+        </section>
+
+        <section className="space-y-10">
+          <h2 className="text-4xl tracking-widest text-center">
+            WHAT WE <span className="text-yellow-400">DO</span>
+          </h2>
+
+          <div className="relative h-150 border-2 border-zinc-800 bg-zinc-950 rounded-xl overflow-hidden">
+            <InfiniteMenu items={items} scale={1} />
+          </div>
+        </section>
+
+        <section className="space-y-12">
+          <h2 className="text-4xl tracking-widest text-center">
+            OUR <span className="text-blue-500">TEAM</span>
+          </h2>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            {team.map((member, index) => (
+              <PixelCard key={index}>
+                <div className="relative h-96 rounded-2xl overflow-hidden group">
+                  <div className="absolute inset-0 border-2 border-zinc-700 rounded-2xl overflow-hidden">
+                    <img
+                      src={member.image}
+                      alt={member.name}
+                      
+                      className="w-full h-full object-cover grayscale group-hover:grayscale-0 scale-105 transition-all duration-700 group-hover:scale-110"
+                    />
+                  </div>
+
+                  <div className="absolute inset-0 bg-linear-to-t from-black/90 via-black/50 to-black/10" />
+
+                  <div className="absolute bottom-0 w-full p-5">
+                    <h3 className="text-lg tracking-widest text-yellow-400">
+                      {member.name}
+                    </h3>
+                    <p className="text-sm text-zinc-300">{member.role}</p>
+                    <p className="text-xs text-zinc-400">{member.skill}</p>
+
+                    <button
+                      onClick={() => setActiveMember(member)}
+                      className="mt-4 inline-block border border-yellow-400 px-4 py-1 text-xs tracking-widest text-yellow-400 hover:bg-yellow-400 hover:text-black transition"
+                    >
+                      SEE MORE
+                    </button>
+                  </div>
+                </div>
+              </PixelCard>
+            ))}
+          </div>
+        </section>
+
+        <FAQ />
+        <Footer />
+      </div>
+
+      <TeamPopup member={activeMember} onClose={() => setActiveMember(null)} />
+    </div>
+  );
+}
