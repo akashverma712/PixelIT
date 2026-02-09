@@ -1,4 +1,11 @@
 'use client';
+import { motion } from "framer-motion";
+
+
+import BentoGrid from "../components/BentoGrid";
+
+
+
 
 import { useState } from "react";
 import Navbar from "../components/Navbar";
@@ -100,13 +107,23 @@ export default function AboutPage() {
               />
             </div>
 
-            <div className="border-2 border-zinc-800 bg-zinc-950 p-6 rounded-xl">
-              <img
-                src="/team.jpeg"
-                alt="PixelIt Team"
-                className="w-full max-w-sm mx-auto rounded-lg opacity-90"
-              />
-            </div>
+            <div className="border-2 border-zinc-800 bg-zinc-950 p-6 rounded-xl overflow-hidden">
+  <motion.img
+    src="/team.jpeg"
+    alt="PixelIt Team"
+    className="w-full max-w-sm mx-auto rounded-lg opacity-90"
+    initial={{ scale: 1.1, opacity: 0 }}
+    animate={{ scale: 1, opacity: 1 }}
+    whileHover={{ scale: 1.5 }}
+    whileInView={{ scale: 1.2, opacity: 1 }}
+    viewport={{ once: true }}
+    transition={{
+      duration: 0.9,
+      ease: "easeOut",
+    }}
+  />
+</div>
+
           </div>
         </section>
 
@@ -126,15 +143,36 @@ export default function AboutPage() {
           </h2>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-            {team.map((member, index) => (
-              <PixelCard key={index}>
+  {team.map((member, index) => (
+    <motion.div
+  key={index}
+  initial={{
+    opacity: 0,
+    y: index % 2 === 0 ? -80 : 80,
+  }}
+  whileInView={{
+    opacity: 1,
+    y: 0,
+  }}
+  transition={{
+    duration: 1.4,
+    ease: "easeOut",
+    delay: index * 0.25, // 👈 stagger magic
+  }}
+  viewport={{
+    once: true,
+    margin: "-100px", // 👈 delays start until visible
+  }}
+>
+
+    <PixelCard>
                 <div className="relative h-96 rounded-2xl overflow-hidden group">
                   <div className="absolute inset-0 border-2 border-zinc-700 rounded-2xl overflow-hidden">
                     <img
                       src={member.image}
                       alt={member.name}
                       
-                      className="w-full h-full object-cover grayscale group-hover:grayscale-0 scale-105 transition-all duration-700 group-hover:scale-110"
+                      className="absolute w-full h-full object-cover grayscale group-hover:grayscale-0 scale-105 transition-all duration-700 group-hover:scale-110"
                     />
                   </div>
 
@@ -156,9 +194,21 @@ export default function AboutPage() {
                   </div>
                 </div>
               </PixelCard>
+              </motion.div>
             ))}
           </div>
         </section>
+
+<section className="py-24">
+        <h2 className="text-4xl tracking-widest text-center mb-12">
+          WHAT WE <span className="text-yellow-400">DO</span>
+        </h2>
+
+        <BentoGrid />
+      </section>
+
+
+
 
         <FAQ />
         <Footer />

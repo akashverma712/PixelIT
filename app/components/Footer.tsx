@@ -4,7 +4,8 @@ import Link from "next/link";
 
 export default function Footer() {
   return (
-    <footer className="border-t border-zinc-800 bg-black">
+    <footer className="border-t border-zinc-800 bg-[var(--bg-main)] text-[var(--text-muted)]"
+    >
       <div className="max-w-7xl mx-auto px-6 py-14 grid grid-cols-1 md:grid-cols-4 gap-12">
 
         <div className="space-y-4">
@@ -84,11 +85,16 @@ export default function Footer() {
             </a>
           </div>
 
+
+
           <p className="text-zinc-500 text-xs pt-3">
             © {new Date().getFullYear()} PixelIt. All rights reserved.
           </p>
         </div>
       </div>
+
+
+      
     </footer>
   );
 }

@@ -8,6 +8,30 @@ type FAQType = {
   question: string;
   answer: string;
 };
+const listVariants = {
+  hidden: {},
+  show: {
+    transition: {
+      staggerChildren: 0.15, // controls top → bottom delay
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: {
+    opacity: 0,
+    x: -40, // left → right
+  },
+  show: {
+    opacity: 1,
+    x: 0,
+    transition: {
+      duration: 0.5,
+      ease: [0.23, 1, 0.32, 1],
+    },
+  },
+};
+
 
 const faqs: FAQType[] = [
   {
@@ -61,7 +85,14 @@ export default function FAQ() {
       </div>
 
       {/* FAQ List */}
-      <dl className="max-w-6xl mx-auto space-y-6">
+      <motion.dl
+  variants={listVariants}
+  initial="hidden"
+  whileInView="show"
+  viewport={{ once: true, margin: "-100px" }}
+  className="max-w-6xl mx-auto space-y-6"
+>
+
         {faqs.map((faq, index) => (
           <FAQItem
             key={index}
@@ -71,7 +102,7 @@ export default function FAQ() {
             toggle={() => setActive(active === index ? null : index)}
           />
         ))}
-      </dl>
+      </motion.dl>
     </section>
   );
 }
@@ -89,7 +120,8 @@ function FAQItem({
 }) {
   return (
     <motion.div
-      layout
+      layout="position"
+        variants={itemVariants}
       className={`relative overflow-hidden rounded-2xl border transition-all duration-500
         ${
           isOpen
