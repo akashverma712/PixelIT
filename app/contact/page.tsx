@@ -1,16 +1,55 @@
 'use client';
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import emailjs from '@emailjs/browser';
 import Navbar from "../components/Navbar";
 import ReflectiveCard from "../components/ReflectiveCard";
 
 export default function ContactPage() {
   const [showJoin, setShowJoin] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const formRef = useRef<HTMLFormElement>(null);
 
   useEffect(() => {
     document.body.style.overflow = showJoin ? "hidden" : "auto";
   }, [showJoin]);
+
+  const handleServicesSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!formRef.current) return;
+
+    setIsSubmitting(true);
+
+    const formData = new FormData(formRef.current);
+    const selectedServices = formData.getAll('services').join(', ');
+
+    const templateParams = {
+      user_name: formData.get('name'),
+      user_email: formData.get('email'),
+      user_budget: formData.get('budget'),
+      user_services: selectedServices || 'None selected',
+      user_query: formData.get('query'),
+    };
+
+    emailjs.send(
+      'service_w5525mm',
+      'template_jpdielo',
+      templateParams,
+      'xCLYUGuk1kn_GBq62'
+    )
+    .then(() => {
+      alert('Your inquiry has been sent successfully to our team!');
+      formRef.current?.reset();
+    })
+    .catch((error) => {
+      console.error('EmailJS Submission Error:', error);
+      alert('Failed to send the message. Please check the browser console.');
+    })
+    .finally(() => {
+      setIsSubmitting(false);
+    });
+  };
 
   return (
     <div
@@ -36,13 +75,20 @@ export default function ContactPage() {
               we craft solutions that actually work.
             </p>
 
-            <form className="bg-zinc-950 border-2 border-zinc-800 p-8 space-y-8">
+            <form 
+              ref={formRef} 
+              onSubmit={handleServicesSubmit} 
+              className="bg-zinc-950 border-2 border-zinc-800 p-8 space-y-8"
+            >
               {["NAME", "EMAIL", "BUDGET"].map((label) => (
                 <div key={label}>
                   <label className="block text-xs mb-2 tracking-widest text-zinc-400">
                     {label}
                   </label>
                   <input
+                    required={label !== "BUDGET"}
+                    name={label.toLowerCase()}
+                    type={label === "EMAIL" ? "email" : "text"}
                     className="w-full bg-black border-2 border-zinc-800 px-4 py-3 text-white outline-none focus:border-yellow-400"
                     placeholder={`ENTER ${label}`}
                   />
@@ -62,8 +108,13 @@ export default function ContactPage() {
                     "Webinar / Seminar",
                     "Others"
                   ].map((service) => (
-                    <label key={service} className="flex items-center gap-3 text-zinc-300">
-                      <input type="checkbox" className="accent-yellow-400 scale-110" />
+                    <label key={service} className="flex items-center gap-3 text-zinc-300 cursor-pointer select-none">
+                      <input 
+                        type="checkbox" 
+                        name="services" 
+                        value={service} 
+                        className="accent-yellow-400 scale-110" 
+                      />
                       {service}
                     </label>
                   ))}
@@ -75,14 +126,19 @@ export default function ContactPage() {
                   QUERY CORNER
                 </label>
                 <textarea
+                  name="query"
                   rows={4}
                   placeholder="DROP YOUR QUERY HERE..."
-                  className="w-full bg-black border-2 border-zinc-800 px-4 py-3 text-white outline-none focus:border-yellow-400"
+                  className="w-full bg-black border-2 border-zinc-800 px-4 py-3 text-white outline-none focus:border-yellow-400 resize-none"
                 />
               </div>
 
-              <button className="w-full border-2 border-yellow-400 text-yellow-400 py-4 tracking-widest hover:bg-yellow-400 hover:text-black transition">
-                SEND MESSAGE →
+              <button 
+                type="submit"
+                disabled={isSubmitting}
+                className="w-full border-2 border-yellow-400 text-yellow-400 py-4 tracking-widest hover:bg-yellow-400 hover:text-black transition disabled:opacity-50 uppercase"
+              >
+                {isSubmitting ? 'Sending...' : 'SEND MESSAGE →'}
               </button>
             </form>
           </div>
@@ -113,7 +169,7 @@ export default function ContactPage() {
               </div>
               <div>
                 <p className="tracking-widest text-sm">EMAIL</p>
-                <p className="text-xs text-zinc-400">aakashverma7122004@gmail.com</p>
+                <p className="text-xs text-zinc-400">connect@pixelit.co.in</p>
               </div>
             </div>
 
