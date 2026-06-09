@@ -1,119 +1,150 @@
 'use client';
-
-import { Github, Linkedin, Twitter, Trophy, X } from "lucide-react";
+import { useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
-interface Member {
-  image: string;
+type Member = {
   name: string;
   role: string;
   skill: string;
+  image: string;
   description: string;
-  achievements?: string[];
-  socials?: {
-    github?: string;
-    linkedin?: string;
-    twitter?: string;
-  };
+};
+
+interface TeamPopupProps {
+  member: Member | null;
+  onClose: () => void;
 }
 
-export default function TeamPopup({ member, onClose }: { member: Member | null; onClose: () => void }) {
+export default function TeamPopup({ member, onClose }: TeamPopupProps) {
+  useEffect(() => {
+    if (!member) return;
+    const handleKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onClose();
+    };
+    document.addEventListener("keydown", handleKey);
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.removeEventListener("keydown", handleKey);
+      document.body.style.overflow = "auto";
+    };
+  }, [member, onClose]);
+
   return (
     <AnimatePresence>
       {member && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-md p-4">
-          <motion.div 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={onClose}
-            className="absolute inset-0"
-          />
-
-          <motion.div 
-            initial={{ scale: 0.9, opacity: 0, y: 20 }}
-            animate={{ scale: 1, opacity: 1, y: 0 }}
-            exit={{ scale: 0.9, opacity: 0, y: 20 }}
-            className="relative w-full max-w-4xl bg-zinc-950 border-2 border-yellow-400 rounded-sm overflow-hidden flex flex-col md:flex-row shadow-[0_0_50px_rgba(250,204,24,0.1)]"
+        <motion.div
+          key="backdrop"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.2 }}
+          className="fixed inset-0 z-50 flex items-center justify-center p-4"
+          style={{
+            backdropFilter: "blur(14px)",
+            WebkitBackdropFilter: "blur(14px)",
+            background: "rgba(0,0,0,0.80)",
+          }}
+          onClick={onClose}
+        >
+          <motion.div
+            key="card"
+            initial={{ opacity: 0, scale: 0.9, y: 32 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.92, y: 20 }}
+            transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+            onClick={(e) => e.stopPropagation()}
+            className="relative w-full max-w-2xl bg-[#0a0a0a] border border-zinc-800 overflow-hidden"
+            style={{ fontFamily: "var(--font-pixel)" }}
           >
-            <div className="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-yellow-400 z-10" />
-            <div className="absolute top-0 right-0 w-4 h-4 border-t-2 border-r-2 border-yellow-400 z-10" />
-            <div className="absolute bottom-0 left-0 w-4 h-4 border-b-2 border-l-2 border-yellow-400 z-10" />
-            <div className="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-yellow-400 z-10" />
+            <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-yellow-400/50 to-transparent" />
+            <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-blue-500/30 to-transparent" />
+            <div className="absolute top-0 left-0 w-6 h-6 border-t-2 border-l-2 border-yellow-400/60" />
+            <div className="absolute top-0 right-0 w-6 h-6 border-t-2 border-r-2 border-yellow-400/60" />
+            <div className="absolute bottom-0 left-0 w-6 h-6 border-b-2 border-l-2 border-yellow-400/60" />
+            <div className="absolute bottom-0 right-0 w-6 h-6 border-b-2 border-r-2 border-yellow-400/60" />
 
             <button
               onClick={onClose}
-              className="absolute top-4 right-4 z-20 text-yellow-400 hover:bg-yellow-400 hover:text-black transition-all p-1 border border-yellow-400/30"
+              className="absolute top-4 right-4 z-10 w-8 h-8 flex items-center justify-center border border-zinc-700 text-zinc-400 hover:border-yellow-400 hover:text-yellow-400 transition-all text-xs"
             >
-              <X size={20} />
+              ✕
             </button>
 
-            <div className="w-full md:w-[40%] h-80 md:h-auto border-b md:border-b-0 md:border-r border-zinc-800 relative bg-zinc-900">
-              <img
-                src={member.image}
-                alt={member.name}
-                className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-transparent to-transparent" />
-              
-              <div className="absolute bottom-6 left-6 flex gap-3">
-                {member.socials?.github && (
-                  <a href={member.socials.github} target="_blank" className="p-2 bg-black/60 border border-zinc-700 text-white hover:border-yellow-400 hover:text-yellow-400 transition-all">
-                    <Github size={18} />
-                  </a>
-                )}
-                {member.socials?.linkedin && (
-                  <a href={member.socials.linkedin} target="_blank" className="p-2 bg-black/60 border border-zinc-700 text-white hover:border-blue-500 hover:text-blue-500 transition-all">
-                    <Linkedin size={18} />
-                  </a>
-                )}
-                {member.socials?.twitter && (
-                  <a href={member.socials.twitter} target="_blank" className="p-2 bg-black/60 border border-zinc-700 text-white hover:border-sky-400 hover:text-sky-400 transition-all">
-                    <Twitter size={18} />
-                  </a>
-                )}
-              </div>
-            </div>
-
-            <div className="w-full md:w-[60%] p-8 md:p-10 space-y-8 flex flex-col justify-start overflow-y-auto max-h-[80vh]">
-              
-              <div className="space-y-1">
-                <span className="text-blue-500 text-[10px] tracking-[0.4em] font-bold uppercase">{member.skill}</span>
-                <h3 className="text-4xl tracking-tighter text-yellow-400 font-black uppercase">
-                  {member.name}
-                </h3>
-                <p className="text-zinc-500 text-sm tracking-widest uppercase border-l-2 border-yellow-400 pl-3">
-                  {member.role}
-                </p>
-              </div>
-
-              <div className="space-y-3">
-                <h4 className="text-white text-[10px] uppercase tracking-[0.2em] font-bold flex items-center gap-2">
-                  <Trophy size={12} className="text-yellow-400" /> Achievements
-                </h4>
-                <div className="grid grid-cols-1 gap-2">
-                  {member.achievements?.map((ach, idx) => (
-                    <div key={idx} className="text-[11px] text-zinc-400 border border-zinc-800 p-2 bg-zinc-900/30">
-                      {ach}
-                    </div>
-                  )) || <div className="text-[11px] text-zinc-600">No data records found.</div>}
+            <div className="grid grid-cols-1 sm:grid-cols-2">
+              <div className="relative h-72 sm:h-auto sm:min-h-[380px] overflow-hidden">
+                <img
+                  src={member.image}
+                  alt={member.name}
+                  className="absolute inset-0 w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-[#0a0a0a]/20 to-transparent sm:bg-gradient-to-r sm:from-transparent sm:via-transparent sm:to-[#0a0a0a]" />
+                <div className="absolute bottom-4 left-4 sm:hidden">
+                  <p className="text-[10px] tracking-[0.2em] text-yellow-400/70 mb-1">
+                    {member.role.toUpperCase()}
+                  </p>
+                  <h2 className="text-xl tracking-widest text-white">
+                    {member.name.toUpperCase()}
+                  </h2>
                 </div>
               </div>
 
-              <div className="space-y-3">
-                <h4 className="text-white text-[10px] uppercase tracking-[0.2em] font-bold">About Unit</h4>
-                <p className="text-zinc-400 text-sm leading-relaxed font-normal">
-                  {member.description}
-                </p>
-              </div>
+              <div
+                className="p-7 sm:p-8 flex flex-col justify-between gap-6"
+                style={{
+                  backgroundImage:
+                    "radial-gradient(circle at 1px 1px, rgba(255,255,255,0.018) 1px, transparent 0)",
+                  backgroundSize: "20px 20px",
+                }}
+              >
+                <div>
+                  <div className="hidden sm:block mb-6">
+                    <span className="text-[10px] tracking-[0.25em] text-yellow-400/60 block mb-2">
+                      TEAM MEMBER
+                    </span>
+                    <h2 className="text-2xl tracking-widest text-white leading-tight">
+                      {member.name.toUpperCase()}
+                    </h2>
+                  </div>
 
-              <div className="pt-6 border-t border-zinc-900 flex justify-between items-center">
-                <span className="text-[8px] text-zinc-600 tracking-[0.3em] font-mono">STATUS: ACTIVE</span>
-                <span className="text-[8px] text-zinc-700 tracking-[0.2em] font-mono uppercase">Data_Stream_v1.0</span>
+                  <div className="flex flex-wrap gap-2 mb-6">
+                    <span className="text-[10px] tracking-widest border border-blue-500/40 text-blue-400 bg-blue-500/5 px-3 py-1">
+                      {member.role.toUpperCase()}
+                    </span>
+                    <span className="text-[10px] tracking-widest border border-zinc-700 text-zinc-400 px-3 py-1">
+                      {member.skill.toUpperCase()}
+                    </span>
+                  </div>
+
+                  <div className="border-t border-zinc-800 pt-5">
+                    <p className="text-[10px] tracking-[0.2em] text-zinc-600 mb-3">ABOUT</p>
+                    <p className="text-sm text-zinc-400 leading-relaxed tracking-wide">
+                      {member.description}
+                    </p>
+                  </div>
+                </div>
+
+                <div className="space-y-2 pt-2">
+                  <div className="flex gap-2">
+                    {["GITHUB", "LINKEDIN", "TWITTER"].map((social) => (
+                      <button
+                        key={social}
+                        className="flex-1 border border-zinc-800 py-2 text-[9px] tracking-widest text-zinc-600 hover:border-zinc-600 hover:text-zinc-300 transition-all"
+                      >
+                        {social}
+                      </button>
+                    ))}
+                  </div>
+                  <button
+                    onClick={onClose}
+                    className="w-full border border-yellow-400/60 py-3 text-[10px] tracking-widest text-yellow-400 hover:bg-yellow-400 hover:text-black transition-all duration-200"
+                  >
+                    CLOSE ✕
+                  </button>
+                </div>
               </div>
             </div>
           </motion.div>
-        </div>
+        </motion.div>
       )}
     </AnimatePresence>
   );
