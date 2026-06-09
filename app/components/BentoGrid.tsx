@@ -15,12 +15,10 @@ const items = [
   { id: 9, image: "https://media.istockphoto.com/id/1441599728/photo/three-friends-dancing-at-the-music-festival-in-sunny-day.jpg?s=612x612&w=0&k=20&c=aqD688JNAli1o-aK2sFepgCSeCJ7yy239ECXJH5labw=" },
 ];
 
-
 export default function BentoGrid() {
   const ref = useRef<HTMLDivElement | null>(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
-  // ✅ hooks MUST be inside the component
   const shuffledIndexes = useMemo(() => {
     const order = [...Array(items.length).keys()];
     return order.sort(() => Math.random() - 0.5);
@@ -39,7 +37,7 @@ export default function BentoGrid() {
       transition: {
         delay: i * 0.12,
         duration: 0.55,
-        ease: "easeOut",
+        ease: "easeOut" as const,
       },
     }),
   };
@@ -47,35 +45,31 @@ export default function BentoGrid() {
   return (
     <div ref={ref}>
       <div
-  className="
-    grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4
-    auto-rows-[180px]
-    gap-6
-    max-w-6xl mx-auto
-    grid-flow-dense
-  "
->
-
-
-
+        className="
+          grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4
+          auto-rows-[180px]
+          gap-6
+          max-w-6xl mx-auto
+          grid-flow-dense
+        "
+      >
         {items.map((item, index) => {
           const randomOrderIndex = shuffledIndexes[index];
 
           return (
             <motion.div
-  key={item.id}
-  variants={itemVariant}
-  initial="hidden"
-  animate={isInView ? "visible" : "hidden"}
-  custom={randomOrderIndex}
-  className={`
-    relative overflow-hidden rounded-xl
-    border border-white/10
-    bg-black/60 backdrop-blur-md
-    ${item.span ?? ""}
-  `}
->
-
+              key={item.id}
+              variants={itemVariant}
+              initial="hidden"
+              animate={isInView ? "visible" : "hidden"}
+              custom={randomOrderIndex}
+              className={`
+                relative overflow-hidden rounded-xl
+                border border-white/10
+                bg-black/60 backdrop-blur-md
+                ${item.span ?? ""}
+              `}
+            >
               <img
                 src={item.image}
                 alt=""
@@ -88,4 +82,3 @@ export default function BentoGrid() {
     </div>
   );
 }
-

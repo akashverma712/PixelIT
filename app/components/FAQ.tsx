@@ -27,7 +27,7 @@ const itemVariants = {
     x: 0,
     transition: {
       duration: 0.5,
-      ease: [0.23, 1, 0.32, 1],
+      ease: 'easeInOut',
     },
   },
 };
@@ -121,7 +121,7 @@ function FAQItem({
   return (
     <motion.div
       layout="position"
-        variants={itemVariants}
+        // variants={itemVariants}
       className={`relative overflow-hidden rounded-2xl border transition-all duration-500
         ${
           isOpen
