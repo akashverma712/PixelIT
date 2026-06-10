@@ -75,9 +75,9 @@ export default function ContactPage() {
               we craft solutions that actually work.
             </p>
 
-            <form 
-              ref={formRef} 
-              onSubmit={handleServicesSubmit} 
+            <form
+              ref={formRef}
+              onSubmit={handleServicesSubmit}
               className="bg-zinc-950 border-2 border-zinc-800 p-8 space-y-8"
             >
               {["NAME", "EMAIL", "BUDGET"].map((label) => (
@@ -109,11 +109,11 @@ export default function ContactPage() {
                     "Others"
                   ].map((service) => (
                     <label key={service} className="flex items-center gap-3 text-zinc-300 cursor-pointer select-none">
-                      <input 
-                        type="checkbox" 
-                        name="services" 
-                        value={service} 
-                        className="accent-yellow-400 scale-110" 
+                      <input
+                        type="checkbox"
+                        name="services"
+                        value={service}
+                        className="accent-yellow-400 scale-110"
                       />
                       {service}
                     </label>
@@ -133,7 +133,7 @@ export default function ContactPage() {
                 />
               </div>
 
-              <button 
+              <button
                 type="submit"
                 disabled={isSubmitting}
                 className="w-full border-2 border-yellow-400 text-yellow-400 py-4 tracking-widest hover:bg-yellow-400 hover:text-black transition disabled:opacity-50 uppercase"
@@ -143,7 +143,6 @@ export default function ContactPage() {
             </form>
           </div>
 
-          {/* RIGHT */}
           <div className="space-y-8">
             <div className="border-2 border-zinc-800 bg-zinc-900 flex justify-center p-10">
               <img
@@ -196,7 +195,7 @@ export default function ContactPage() {
               animate={{ scale: 1, y: 0 }}
               exit={{ scale: 0.92, y: 20 }}
               transition={{ duration: 0.3 }}
-              className="relative w-full max-w-5xl max-h-[85vh] overflow-y-auto bg-zinc-950 border-2 border-zinc-800 p-6 md:p-8"
+              className="relative w-full max-w-5xl bg-zinc-950 border-2 border-zinc-800 p-6 md:p-8"
             >
               <button
                 onClick={() => setShowJoin(false)}
@@ -206,10 +205,14 @@ export default function ContactPage() {
               </button>
 
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
-                <div className="space-y-5">
-                  <h2 className="text-3xl tracking-widest mb-4">
+                <div className="space-y-4">
+                  <h2 className="text-3xl tracking-widest mb-2">
                     JOIN <span className="text-yellow-400">PIXELIT</span>
                   </h2>
+
+                  <p className="text-zinc-500 text-xs tracking-widest">
+                    APPLICATIONS CURRENTLY CLOSED. CHECK BACK SOON.
+                  </p>
 
                   {[
                     "FULL NAME",
@@ -221,17 +224,22 @@ export default function ContactPage() {
                     <input
                       key={field}
                       placeholder={field}
-                      className="w-full bg-black border-2 border-zinc-800 px-4 py-3 text-white outline-none focus:border-yellow-400"
+                      disabled
+                      className="w-full bg-zinc-900 border-2 border-zinc-800 px-4 py-3 text-zinc-600 outline-none cursor-not-allowed opacity-50"
                     />
                   ))}
 
                   <textarea
-                    rows={4}
+                    rows={3}
                     placeholder="WHY DO YOU WANT TO JOIN PIXELIT?"
-                    className="w-full bg-black border-2 border-zinc-800 px-4 py-3 text-white outline-none focus:border-yellow-400"
+                    disabled
+                    className="w-full bg-zinc-900 border-2 border-zinc-800 px-4 py-3 text-zinc-600 outline-none resize-none cursor-not-allowed opacity-50"
                   />
 
-                  <button className="w-full border-2 border-yellow-400 py-4 text-yellow-400 tracking-widest hover:bg-yellow-400 hover:text-black transition">
+                  <button
+                    disabled
+                    className="w-full border-2 border-zinc-700 py-4 text-zinc-600 tracking-widest cursor-not-allowed opacity-50"
+                  >
                     SUBMIT →
                   </button>
                 </div>
