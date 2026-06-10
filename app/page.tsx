@@ -4,8 +4,14 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
 import PixelSnow from "./components/PixelSnow";
 import Navbar from "./components/Navbar";
-
-
+import WhoWeAre from "./components/Home/WhoWeAre";
+// import WhatWeDo from  "./components/Home/WhatWeDo";
+import Methodology from "./components/Home/Methodology";
+import Competencies from "./components/Home/services";
+import WhyPixelIT from "./components/Home/WhyPixelIT";
+import Footer from "./components/Footer";
+import ContactPage from "./contact/page";
+import { Contact } from "lucide-react";
 function PixelatedText({
   text,
   delay = 0.5,
@@ -67,11 +73,19 @@ export default function Home() {
     return () => clearTimeout(timer);
   }, []);
 
+  const scrollToContent = () => {
+  document.getElementById("who-we-are")?.scrollIntoView({
+    behavior: "smooth",
+    block: "start",
+  });
+};
   return (
+       <>
     <div className="relative w-full h-screen overflow-hidden bg-black">
 
       <AnimatePresence>
         {loading && (
+          
           <motion.div
             className="fixed inset-0 z-999 flex flex-col items-center justify-center bg-black"
             initial={{ opacity: 1 }}
@@ -158,6 +172,7 @@ export default function Home() {
           </div>
 
           <motion.div
+           onClick={scrollToContent}
             className="absolute bottom-10 left-1/2 -translate-x-1/2 z-20 group cursor-pointer flex flex-col items-center"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -189,5 +204,19 @@ export default function Home() {
         </>
       )}
     </div>
+     {!loading && 
+     <>
+     <WhoWeAre />
+       
+  <Methodology />
+  <Competencies />
+  <WhyPixelIT />
+ <ContactPage />
+
+   <Footer />
+  
+       </>
+     }
+  </>
   );
 }

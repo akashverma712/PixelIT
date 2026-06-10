@@ -26,23 +26,21 @@ export default function BentoGrid() {
     return order.sort(() => Math.random() - 0.5);
   }, []);
 
-  const itemVariant = {
-    hidden: {
-      opacity: 0,
-      scale: 0.8,
-      y: 40,
+ const itemVariant = {
+  hidden: {
+    opacity: 0,
+    scale: 0.9,
+    y: 20,
+  },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    y: 0,
+    transition: {
+      duration: 0.5,
     },
-    visible: (i: number) => ({
-      opacity: 1,
-      scale: 1,
-      y: 0,
-      transition: {
-        delay: i * 0.12,
-        duration: 0.55,
-        ease: "easeOut",
-      },
-    }),
-  };
+  },
+};
 
   return (
     <div ref={ref}>
@@ -67,7 +65,7 @@ export default function BentoGrid() {
   variants={itemVariant}
   initial="hidden"
   animate={isInView ? "visible" : "hidden"}
-  custom={randomOrderIndex}
+  
   className={`
     relative overflow-hidden rounded-xl
     border border-white/10

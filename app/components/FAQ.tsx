@@ -27,7 +27,7 @@ const itemVariants = {
     x: 0,
     transition: {
       duration: 0.5,
-      ease: [0.23, 1, 0.32, 1],
+      
     },
   },
 };
@@ -75,7 +75,9 @@ export default function FAQ() {
           FAQ Corner
         </motion.span>
 
-        <h2 className="text-4xl sm:text-6xl font-bold tracking-tight text-white">
+        <h2 className="text-4xl sm:text-6xl font-bold tracking-tight text-white
+        "
+         style={{ fontFamily: "var(--font-pixel)" }}>
           QUESTIONS <span className="text-blue-500">ANSWERED</span>
         </h2>
 
@@ -120,8 +122,11 @@ function FAQItem({
 }) {
   return (
     <motion.div
-      layout="position"
-        variants={itemVariants}
+        layout="position"
+  variants={itemVariants}
+  initial="hidden"
+  whileInView="show"
+  viewport={{ once: true }}
       className={`relative overflow-hidden rounded-2xl border transition-all duration-500
         ${
           isOpen
@@ -176,7 +181,7 @@ function FAQItem({
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.35, ease: [0.23, 1, 0.32, 1] }}
+           transition={{ duration: 0.35 }}
             className="overflow-hidden"
           >
             <div className="px-6 sm:px-10 pb-8 pt-4 border-t border-zinc-800/60">
