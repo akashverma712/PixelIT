@@ -322,7 +322,7 @@ export default function Page() {
 
         .title-scramble { 
           letter-spacing: clamp(2px, 1vw, 6px); 
-          font-size: clamp(104x, 2vw, 18px); 
+          font-size: clamp(10px, 2vw, 18px); 
           margin-bottom: 15px; color: #fff;
         }
         .name { 
