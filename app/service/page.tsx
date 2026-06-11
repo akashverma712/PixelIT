@@ -14,9 +14,9 @@ const pixelFont = VT323({
 
 const domains = [
   {
-    title: "WEB DEVELOPMENT",
+    title: "SOFTWARE DEVELOPMENT",
     route: "/service/webdev",
-    scramble: "NEXT-GEN WEB ARCHITECTURES",
+    scramble: "NEXT-GEN SOFTWARE ENGINEERING",
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2">
         <path
@@ -27,22 +27,8 @@ const domains = [
       </svg>
     ),
     description:
-      "Building fast, scalable, and responsive web applications tailored to modern business needs. From landing pages to full-stack platforms, we deliver seamless digital experiences powered by cutting-edge technologies.",
+      "Building scalable software solutions with modern architectures, seamless user experiences, and innovative technologies that drive digital transformation and business growth.",
   },
-
-  {
-    title: "VIDEO EDITING",
-    route: "/service/video",
-    scramble: "CINEMATIC CONTENT ENGINEERING",
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2">
-        <path d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-      </svg>
-    ),
-    description:
-      "Transforming ideas into compelling visual stories through professional editing, motion graphics, color grading, sound design, and cinematic post-production workflows.",
-  },
-
   {
     title: "AUTOMATION & IOT",
     route: "/service/iot",
@@ -55,36 +41,26 @@ const domains = [
     description:
       "Developing intelligent IoT and automation solutions that connect devices, streamline operations, enable real-time monitoring, and unlock smarter decision-making.",
   },
-
   {
-    title: "GRAPHICS DESIGNING",
-    route: "/service/graphics",
-    scramble: "VISUAL IDENTITY ENGINEERING",
+    title: "VIDEO EDITING",
+    route: "/service",
+    scramble: "CINEMATIC CONTENT ENGINEERING",
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2">
-        <path d="M4 20h16" strokeLinecap="round" />
-
-        <path
-          d="M7 17l10-10a2 2 0 0 1 3 3L10 20l-4 1 1-4z"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-
-        <path d="M14 6l4 4" strokeLinecap="round" />
-
-        <path
-          d="M4 4h6M4 7h4M4 10h6"
-          strokeLinecap="round"
-        />
+        <path d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
       </svg>
     ),
     description:
-      "Crafting impactful visual identities through branding, logo design, social media creatives, marketing assets, UI concepts, and modern design systems that elevate brands.",
+      "Transforming ideas into compelling visual stories through professional editing, motion graphics, color grading, sound design, and cinematic post-production workflows.",
   },
+
+  
+
+ 
 
   {
     title: "WEBINARS & SEMINARS",
-    route: "/service/webinars",
+    route: "/service",
     scramble: "DIGITAL KNOWLEDGE EXPERIENCES",
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2">

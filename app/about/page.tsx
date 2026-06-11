@@ -1,48 +1,44 @@
 'use client';
 import { motion } from "framer-motion";
 import Methodology from "../components/Home/Methodology";
-import { useState } from "react";
 import Navbar from "../components/Navbar";
 import PixelCard from "../components/PixelCard";
 import Footer from "../components/Footer";
 import FAQ from "../components/FAQ";
-import TeamPopup from "../components/TeamPopup";
 
 type Member = {
   name: string;
   role: string;
   skill: string;
   image: string;
-  description: string;
+  linkedin?: string;
+  github?: string;
 };
 
 export default function AboutPage() {
-  const [activeMember, setActiveMember] = useState<Member | null>(null);
-
   const topRow: Member[] = [
     {
       name: "Akash Verma",
       role: "Founder",
       skill: "Software Developer",
       image: "/akash.png",
-      description:
-        "Visionary behind PixelIt, focused on building scalable tech solutions, modern web platforms and leading innovation-driven teams.",
+      linkedin: "https://www.linkedin.com/in/akash-verma-94191b331/",
+      github: "https://github.com/akashverma712",
     },
     {
       name: "Harsh Ranjan",
       role: "Co-Founder",
       skill: "Robotics Engineer",
       image: "/harsh.png",
-      description:
-        "Robotics enthusiast working on automation, embedded systems and intelligent hardware-software integration.",
+      linkedin: "https://www.linkedin.com/in/harsh-ranjan-7704a0340/",
     },
     {
       name: "Kunal Singh Marwaha",
       role: "Co-Founder",
-      skill: "Developer",
+      skill: "Software Developer",
       image: "/kunal.png",
-      description:
-        "Dedicated team member at PixelIt, bringing fresh perspectives and technical expertise to every project.",
+      linkedin: "https://www.linkedin.com/in/kunal-singh-marwaha/",
+      github: "https://github.com/kunalsinghmarwaha",
     },
   ];
 
@@ -52,18 +48,29 @@ export default function AboutPage() {
       role: "Co-Founder",
       skill: "Graphic Designer",
       image: "/madhu.png",
-      description:
-        "Creative mind shaping PixelIt's visual identity through branding, UI/UX design and digital storytelling.",
+      linkedin: "https://www.linkedin.com/in/madhu-mishra-971644335/",
     },
     {
       name: "Rimisha Kumari",
       role: "Co-Founder",
       skill: "Software Developer",
       image: "/rimisha.png",
-      description:
-        "Software developer contributing to full-stack development, system design and scalable applications.",
+      linkedin: "https://www.linkedin.com/in/rimisha-kumari-67a2ba334/",
+      github: "https://github.com/rimisha-kumari",
     },
   ];
+
+  const LinkedInIcon = () => (
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+    </svg>
+  );
+
+  const GitHubIcon = () => (
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" />
+    </svg>
+  );
 
   const MemberCard = ({ member, index }: { member: Member; index: number }) => (
     <motion.div
@@ -73,25 +80,45 @@ export default function AboutPage() {
       viewport={{ once: true, margin: "-80px" }}
     >
       <PixelCard>
-        <div className="relative h-96 rounded-2xl overflow-hidden group">
-          <div className="absolute inset-0 border-2 border-zinc-700 rounded-2xl overflow-hidden" style={{ zIndex: 2 }}>
-            <img
-              src={member.image}
-              alt={member.name}
-              className="absolute w-full h-full object-cover grayscale group-hover:grayscale-0 scale-105 transition-all duration-700 group-hover:scale-110"
-            />
-          </div>
-          <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-black/10" style={{ zIndex: 3 }} />
-          <div className="absolute bottom-0 w-full p-5" style={{ zIndex: 4 }}>
-            <h3 className="text-lg tracking-widest text-yellow-400">{member.name}</h3>
-            <p className="text-sm text-zinc-300">{member.role}</p>
-            <p className="text-xs text-zinc-400">{member.skill}</p>
-            <button
-              onClick={() => setActiveMember(member)}
-              className="mt-4 inline-block border border-yellow-400 px-4 py-1 text-xs tracking-widest text-yellow-400 hover:bg-yellow-400 hover:text-black transition"
-            >
-              SEE MORE
-            </button>
+        <div className="p-3">
+          <div className="relative rounded-2xl overflow-hidden group" style={{ height: "340px" }}>
+            <div className="absolute inset-0 border-2 border-zinc-700 rounded-2xl overflow-hidden" style={{ zIndex: 2 }}>
+              <img
+                src={member.image}
+                alt={member.name}
+                className="absolute w-full h-full object-cover grayscale group-hover:grayscale-0 scale-105 transition-all duration-700 group-hover:scale-110"
+              />
+            </div>
+            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-black/10" style={{ zIndex: 3 }} />
+            <div className="absolute bottom-0 w-full p-4" style={{ zIndex: 4 }}>
+              <h3 className="text-sm tracking-widest text-yellow-400">{member.name}</h3>
+              <p className="text-xs text-zinc-300">{member.role}</p>
+              <p className="text-xs text-zinc-400">{member.skill}</p>
+              <div className="mt-3 flex gap-2">
+                {member.linkedin && (
+                  <a
+                    href={member.linkedin}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-1.5 border border-blue-500 px-3 py-1 text-xs tracking-widest text-blue-400 hover:bg-blue-500 hover:text-white transition"
+                  >
+                    <LinkedInIcon />
+                    <span>IN</span>
+                  </a>
+                )}
+                {member.github && (
+                  <a
+                    href={member.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-1.5 border border-zinc-500 px-3 py-1 text-xs tracking-widest text-zinc-300 hover:bg-zinc-600 hover:text-white transition"
+                  >
+                    <GitHubIcon />
+                    <span>GH</span>
+                  </a>
+                )}
+              </div>
+            </div>
           </div>
         </div>
       </PixelCard>
@@ -176,8 +203,6 @@ export default function AboutPage() {
       </div>
 
       <Footer />
-
-      <TeamPopup member={activeMember} onClose={() => setActiveMember(null)} />
     </div>
   );
 }

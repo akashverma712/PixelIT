@@ -12,37 +12,30 @@ type CompetencyType = {
 
 const competencies: CompetencyType[] = [
   {
-    title: 'GRAPHIC DESIGNING',
+    title: 'GRAPHIC DESIGNING AND VIDEO EDITING',
     image: '/gfx.png',
-    link: '/projects/graphic-design',
+    link: '/service',
     description:
-      'We craft visually compelling designs that communicate ideas, strengthen brand identity, and create memorable user experiences. From branding assets to digital creatives, we design with purpose and impact.',
+      'We create and shoot compelling visual narratives that captivate audiences and elevate brands. Our expertise in graphic design and video editing allows us to craft stunning visuals that resonate with your target audience and leave a lasting impression.',
   },
   {
-    title: 'WEB DEVELOPMENT',
+    title: 'SOFTWARE DEVELOPMENT',
     image: '/webd.png',
-    link: '/projects/graphic-design', // Update this route path when ready
+    link: '/service/webdev', 
     description:
-      'We build modern, responsive, and scalable digital platforms tailored to user needs. Our focus is on creating seamless web experiences that combine functionality, performance, and innovation.',
+      'We build modern, responsive, and scalable digital platforms tailored to user needs. Our focus is on creating seamless experiences that combine functionality, performance, and innovation.',
   },
   {
-    title: 'IoT & ROBOTICS',
-    image: '/robo.png',
-    link: '/projects/graphic-design', // Update this route path when ready
-    description:
-      'We develop intelligent systems that bridge the gap between the physical and digital worlds. Through IoT and robotics, we create smart solutions that enhance automation, efficiency, and connectivity.',
-  },
-  {
-    title: 'AI & AUTOMATION',
+    title: 'IOT & AUTOMATION',
     image: '/ai.png',
-    link: '/projects/graphic-design', // Update this route path when ready
+    link: '/service/iot',
     description:
-      'We leverage the power of artificial intelligence to simplify processes, optimize operations, and enable smarter decision-making. Our solutions are designed to improve productivity and drive innovation.',
+      'We harness the power of IoT and automation to create intelligent solutions that enhance efficiency, connectivity, and user experience. From smart devices to automated systems, we bring the future of technology to life.',
   },
   {
-    title: 'WORKSHOPS & INNOVATION BOOTCAMPS',
+    title: 'WEBINARS & SEMINARS',
     image: '/bootcamp.png', 
-    link: '/contact', 
+    link: '/service', 
     description:
       'We foster innovation through hands-on workshops, immersive bootcamps, and collaborative learning experiences. By bridging the gap between theory and practice, we empower students, professionals, and aspiring innovators with practical skills, industry insights, and the confidence to build impactful solutions.',
   },
