@@ -1,163 +1,129 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { motion, Variants } from 'framer-motion';
 
-const journey = [
-  "IDEATE",
-  "INNOVATE",
-  "BUILD",
-  "EMPOWER",
-];
+const journey = ["IDEATE", "INNOVATE", "BUILD", "EMPOWER"];
+
+// Explicitly typing variants prevents TypeScript from complaining
+const containerVariants: Variants = {
+  hidden: {},
+  show: {
+    transition: {
+      staggerChildren: 0.15,
+    },
+  },
+};
+
+const textVariants: Variants = {
+  hidden: { opacity: 0, y: 30 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { 
+      duration: 0.6, 
+      ease: [0.16, 1, 0.3, 1] // Custom cubic-bezier curve (Ultra smooth, error-proof)
+    },
+  },
+};
 
 export default function WhoWeAre() {
   return (
-    <section 
-    id="who-we-are"
-    className="relative bg-black text-white py-32 px-6 overflow-hidden">
-      
-      {/* Background glow */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(59,130,246,0.08),transparent_60%)]" />
+    <section
+      id="who-we-are"
+      className="relative bg-black text-white px-6 overflow-hidden"
+    >
+      {/* Background glow preserved */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(59,130,246,0.08),transparent_60%)] pointer-events-none" />
 
-      <div className="relative max-w-7xl mx-auto grid lg:grid-cols-2 gap-20 items-center">
-
-        {/* LEFT SIDE */}
-        <div>
-
+      <div className="relative max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 lg:gap-24 items-center py-20">
+        
+        {/* LEFT SIDE - CONTENT */}
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, margin: "-100px" }}
+          className="flex flex-col items-start"
+        >
+          {/* Mission Badge */}
           <motion.span
-            initial={{ opacity: 0, y: 15 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            className="inline-block mb-6 border border-yellow-400 px-4 py-1 text-xs tracking-widest text-yellow-400"
+            variants={textVariants}
+            className="inline-block mb-6 border border-yellow-400/40 px-6 py-1.5 text-xs tracking-[0.35em] text-yellow-400 uppercase"
             style={{ fontFamily: "var(--font-pixel)" }}
           >
-            WHO WE ARE
+            Our Mission
           </motion.span>
 
+          {/* Heading */}
           <motion.h2
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="text-5xl mb-8 tracking-widest"
+            variants={textVariants}
+            className="text-4xl sm:text-6xl font-bold tracking-tight text-white mb-8"
             style={{ fontFamily: "var(--font-pixel)" }}
           >
-            WE ARE <span className="text-blue-500">PIXELIT</span>
+            WHAT WE <span className="text-blue-500">DO</span>
           </motion.h2>
 
+          {/* Core Paragraph */}
           <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2, duration: 0.8 }}
-            viewport={{ once: true }}
-            className="text-zinc-400 leading-relaxed text-lg"
+            variants={textVariants}
+            className="text-zinc-400 leading-relaxed text-base sm:text-lg max-w-xl"
           >
-            PIXELIT is an innovation-driven technology and creative studio
-            that transforms ideas into impactful digital experiences and
-            intelligent systems. Through design, development, AI, IoT,
-            and automation, we build future-ready solutions that empower
-            individuals, startups, and organizations to innovate with confidence.
+            Our mission is to bridge the gap between ideas and execution
+            by delivering innovative, high-quality technology solutions
+            that create real-world impact. We empower individuals,
+            startups, and organizations through collaborative learning,
+            creative thinking, and future-ready technologies.
           </motion.p>
 
-          {/* Divider */}
-          <motion.div
-            initial={{ width: 0 }}
-            whileInView={{ width: "100%" }}
-            transition={{ duration: 1 }}
-            viewport={{ once: true }}
-            className="h-px bg-gradient-to-r from-yellow-400 via-blue-500 to-transparent my-10"
-          />
+          {/* Impact Statement */}
+          <motion.div variants={textVariants} className="mt-10 sm:mt-12">
+            <p
+              className="text-xl sm:text-2xl tracking-[0.20em] text-blue-400 font-bold leading-snug"
+              style={{ fontFamily: "var(--font-pixel)" }}
+            >
+              WE DON'T JUST BUILD TECHNOLOGY.
+              <br />
+              <span className="text-yellow-400">WE BUILD IMPACT.</span>
+            </p>
+          </motion.div>
+        </motion.div>
 
-          {/* Mission */}
-        {/* Mission */}
-<motion.h3
-  initial={{ opacity: 0 }}
-  whileInView={{ opacity: 1 }}
-  transition={{ delay: 0.3 }}
-  viewport={{ once: true }}
-  className="text-2xl mb-5 tracking-widest text-yellow-400"
-  style={{ fontFamily: "var(--font-pixel)" }}
->
-  OUR MISSION
-</motion.h3>
+        {/* RIGHT SIDE - PIXEL REVEAL IMAGE */}
+        <div className="relative flex justify-center items-center w-full">
+          <div className="relative w-full max-w-xl aspect-square flex items-center justify-center overflow-hidden">
+            
+            {/* Actual Image */}
+            <img
+              src="/robo2.png"
+              alt="About PixelIT"
+              className="w-full h-full object-contain select-none"
+            />
 
-<motion.p
-  initial={{ opacity: 0, y: 20 }}
-  whileInView={{ opacity: 1, y: 0 }}
-  transition={{ delay: 0.4, duration: 0.8 }}
-  viewport={{ once: true }}
-  className="text-zinc-400 leading-relaxed text-lg"
->
-  Our mission is to bridge the gap between ideas and execution
-  by delivering innovative, high-quality technology solutions
-  that create real-world impact. We empower individuals,
-  startups, and organizations through practical learning,
-  creative thinking, and future-ready technologies.
-</motion.p>
-
-{/* ADD THIS HERE */}
-<motion.p
-  initial={{ opacity: 0 }}
-  whileInView={{ opacity: 1 }}
-  transition={{ delay: 0.6 }}
-  viewport={{ once: true }}
-  className="
-    mt-12
-    text-xl
-    tracking-[0.25em]
-    text-blue-400
-  "
-  style={{
-    fontFamily: "var(--font-pixel)",
-  }}
->
-  WE DON'T JUST BUILD TECHNOLOGY.
-  <br />
-  WE BUILD IMPACT.
-</motion.p>
-
+            {/* Robust Pixel Overlay */}
+            <div 
+              className="absolute inset-0 grid pointer-events-none"
+              style={{ 
+                gridTemplateColumns: 'repeat(20, minmax(0, 1fr))',
+                gridTemplateRows: 'repeat(20, minmax(0, 1fr))' 
+              }}
+            >
+              {Array.from({ length: 400 }).map((_, i) => (
+                <motion.div
+                  key={i}
+                  className="bg-black"
+                  initial={{ opacity: 1 }}
+                  whileInView={{ opacity: 0 }}
+                  transition={{
+                    duration: 0.35,
+                    delay: Math.random() * 1.5,
+                    ease: "easeOut" // Strings work flawlessly inside inline transitions here
+                  }}
+                  viewport={{ once: true }}
+                />
+              ))}
+            </div>
+          </div>
         </div>
-
-        
-      {/* RIGHT SIDE */}
-{/* RIGHT SIDE */}
-<div className="relative flex justify-center items-center">
-
-  <div className="relative w-full max-w-xl">
-
-    {/* Actual Image */}
-    <img
-      src="/robo2.png"
-      alt="About PixelIT"
-      className="w-full object-contain"
-    />
-
-    {/* Pixel Overlay */}
-    <div className="absolute inset-0 grid grid-cols-20 grid-rows-20 pointer-events-none">
-
-      {Array.from({ length: 400 }).map((_, i) => (
-
-        <motion.div
-          key={i}
-          className="bg-black"
-          initial={{ opacity: 1 }}
-          whileInView={{ opacity: 0 }}
-          transition={{
-            duration: 0.35,
-            delay: Math.random() * 1.5,
-          }}
-          viewport={{ once: true }}
-        />
-
-      ))}
-
-    </div>
-
-  </div>
-
-</div>
-
-
 
       </div>
     </section>

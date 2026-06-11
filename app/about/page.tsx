@@ -22,7 +22,7 @@ export default function AboutPage() {
   const topRow: Member[] = [
     {
       name: "Akash Verma",
-      role: "Founder & CEO",
+      role: "Founder",
       skill: "Software Developer",
       image: "/akash.png",
       description:
@@ -74,15 +74,15 @@ export default function AboutPage() {
     >
       <PixelCard>
         <div className="relative h-96 rounded-2xl overflow-hidden group">
-          <div className="absolute inset-0 border-2 border-zinc-700 rounded-2xl overflow-hidden">
+          <div className="absolute inset-0 border-2 border-zinc-700 rounded-2xl overflow-hidden" style={{ zIndex: 2 }}>
             <img
               src={member.image}
               alt={member.name}
               className="absolute w-full h-full object-cover grayscale group-hover:grayscale-0 scale-105 transition-all duration-700 group-hover:scale-110"
             />
           </div>
-          <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-black/10" />
-          <div className="absolute bottom-0 w-full p-5">
+          <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-black/10" style={{ zIndex: 3 }} />
+          <div className="absolute bottom-0 w-full p-5" style={{ zIndex: 4 }}>
             <h3 className="text-lg tracking-widest text-yellow-400">{member.name}</h3>
             <p className="text-sm text-zinc-300">{member.role}</p>
             <p className="text-xs text-zinc-400">{member.skill}</p>
@@ -105,7 +105,7 @@ export default function AboutPage() {
     >
       <Navbar />
 
-      <div className="max-w-7xl mx-auto px-6 pt-36 pb-24 space-y-32">
+      <div className="max-w-7xl mx-auto px-6 pt-36 pb-0 space-y-32">
 
         <section className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
           <div className="lg:pr-10">
@@ -170,14 +170,12 @@ export default function AboutPage() {
           </div>
         </section>
 
-     
-         
-          <Methodology />
-     
+        <Methodology />
 
         <FAQ />
-        <Footer />
       </div>
+
+      <Footer />
 
       <TeamPopup member={activeMember} onClose={() => setActiveMember(null)} />
     </div>

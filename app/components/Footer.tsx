@@ -17,8 +17,8 @@ export default function Footer() {
 
           <p className="text-zinc-400 text-sm leading-relaxed max-w-xs">
             PixelIt is a tech-driven creative collective focused on building
-            impactful digital experiences through design, development,
-            automation, and innovation.
+            impactful solution through design, development,
+            automation, innovation and collaboration.
           </p>
         </div>
 

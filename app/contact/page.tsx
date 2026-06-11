@@ -234,68 +234,70 @@ export default function ContactPage() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4"
+            className="fixed inset-0 z-50 bg-black/80 backdrop-blur-md overflow-y-auto"
           >
-            <motion.div
-              initial={{ scale: 0.92, y: 20 }}
-              animate={{ scale: 1, y: 0 }}
-              exit={{ scale: 0.92, y: 20 }}
-              transition={{ duration: 0.3 }}
-              className="relative w-full max-w-5xl bg-zinc-950 border-2 border-zinc-800 p-5 md:p-8"
-            >
-              <button
-                onClick={() => setShowJoin(false)}
-                className="absolute top-4 right-4 text-zinc-400 hover:text-white text-lg z-10"
+            <div className="flex min-h-full items-center justify-center p-4">
+              <motion.div
+                initial={{ scale: 0.92, y: 20 }}
+                animate={{ scale: 1, y: 0 }}
+                exit={{ scale: 0.92, y: 20 }}
+                transition={{ duration: 0.3 }}
+                className="relative w-full max-w-5xl bg-zinc-950 border-2 border-zinc-800 p-5 md:p-8"
               >
-                ✕
-              </button>
+                <button
+                  onClick={() => setShowJoin(false)}
+                  className="absolute top-4 right-4 text-zinc-400 hover:text-white text-lg z-10"
+                >
+                  ✕
+                </button>
 
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-10 items-center">
-                <div className="space-y-3">
-                  <h2 className="text-2xl md:text-3xl tracking-widest">
-                    JOIN <span className="text-yellow-400">PIXELIT</span>
-                  </h2>
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-10 items-center">
+                  <div className="space-y-3">
+                    <h2 className="text-2xl md:text-3xl tracking-widest">
+                      JOIN <span className="text-yellow-400">PIXELIT</span>
+                    </h2>
 
-                  <p className="text-zinc-400 text-xs tracking-widest leading-relaxed">
-                    WE WILL BE STARTING THE JOINING PROCESS SOON. TILL THEN KEEP{" "}
-                    <span className="text-blue-500">PIXELIZING</span>.
-                  </p>
+                    <p className="text-zinc-400 text-xs tracking-widest leading-relaxed">
+                      WE WILL BE STARTING THE JOINING PROCESS SOON. TILL THEN KEEP{" "}
+                      <span className="text-blue-500">PIXELIZING</span>.
+                    </p>
 
-                  {[
-                    "FULL NAME",
-                    "EMAIL",
-                    "ROLE APPLYING FOR",
-                    "SKILLS / TECH STACK",
-                    "PORTFOLIO / GITHUB / LINKEDIN"
-                  ].map((field) => (
-                    <input
-                      key={field}
-                      placeholder={field}
+                    {[
+                      "FULL NAME",
+                      "EMAIL",
+                      "ROLE APPLYING FOR",
+                      "SKILLS / TECH STACK",
+                      "PORTFOLIO / GITHUB / LINKEDIN"
+                    ].map((field) => (
+                      <input
+                        key={field}
+                        placeholder={field}
+                        disabled
+                        className="w-full bg-zinc-900 border-2 border-zinc-700 px-4 py-3 text-zinc-400 placeholder-zinc-500 outline-none cursor-not-allowed opacity-60"
+                      />
+                    ))}
+
+                    <textarea
+                      rows={2}
+                      placeholder="WHY DO YOU WANT TO JOIN PIXELIT?"
                       disabled
-                      className="w-full bg-zinc-900 border-2 border-zinc-700 px-4 py-3 text-zinc-400 placeholder-zinc-500 outline-none cursor-not-allowed opacity-60"
+                      className="w-full bg-zinc-900 border-2 border-zinc-700 px-4 py-3 text-zinc-400 placeholder-zinc-500 outline-none resize-none cursor-not-allowed opacity-60"
                     />
-                  ))}
 
-                  <textarea
-                    rows={2}
-                    placeholder="WHY DO YOU WANT TO JOIN PIXELIT?"
-                    disabled
-                    className="w-full bg-zinc-900 border-2 border-zinc-700 px-4 py-3 text-zinc-400 placeholder-zinc-500 outline-none resize-none cursor-not-allowed opacity-60"
-                  />
+                    <button
+                      disabled
+                      className="w-full border-2 border-zinc-700 py-3 text-zinc-500 tracking-widest cursor-not-allowed opacity-60"
+                    >
+                      SUBMIT →
+                    </button>
+                  </div>
 
-                  <button
-                    disabled
-                    className="w-full border-2 border-zinc-700 py-3 text-zinc-500 tracking-widest cursor-not-allowed opacity-60"
-                  >
-                    SUBMIT →
-                  </button>
+                  <div className="hidden lg:flex justify-center">
+                    <ReflectiveCard />
+                  </div>
                 </div>
-
-                <div className="hidden lg:flex justify-center">
-                  <ReflectiveCard />
-                </div>
-              </div>
-            </motion.div>
+              </motion.div>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>

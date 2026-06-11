@@ -280,10 +280,11 @@ export default function PixelCard({
     >
       <canvas
         ref={canvasRef}
-        className="absolute inset-0 w-full h-full z-20 pointer-events-none mix-blend-screen"
+        className="absolute inset-0 w-full h-full pointer-events-none"
+        style={{ zIndex: 0 }}
       />
 
-      <div className="relative z-10 w-full h-full">
+      <div className="relative w-full h-full" style={{ zIndex: 1 }}>
         {children}
       </div>
     </div>

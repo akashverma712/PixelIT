@@ -42,7 +42,7 @@ export default function TeamPopup({ member, onClose }: TeamPopupProps) {
           style={{
             backdropFilter: "blur(14px)",
             WebkitBackdropFilter: "blur(14px)",
-            background: "rgba(0,0,0,0.80)",
+            background: "rgba(0,0,0,0.85)",
           }}
           onClick={onClose}
         >
@@ -51,7 +51,7 @@ export default function TeamPopup({ member, onClose }: TeamPopupProps) {
             initial={{ opacity: 0, scale: 0.9, y: 32 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.92, y: 20 }}
-            transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
             onClick={(e) => e.stopPropagation()}
             className="relative w-full max-w-2xl bg-[#0a0a0a] border border-zinc-800 overflow-hidden"
             style={{ fontFamily: "var(--font-pixel)" }}
@@ -75,7 +75,7 @@ export default function TeamPopup({ member, onClose }: TeamPopupProps) {
                 <img
                   src={member.image}
                   alt={member.name}
-                  className="absolute inset-0 w-full h-full object-cover"
+                  className="absolute inset-0 w-full h-full object-cover object-top"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-[#0a0a0a]/20 to-transparent sm:bg-gradient-to-r sm:from-transparent sm:via-transparent sm:to-[#0a0a0a]" />
                 <div className="absolute bottom-4 left-4 sm:hidden">
@@ -117,7 +117,7 @@ export default function TeamPopup({ member, onClose }: TeamPopupProps) {
 
                   <div className="border-t border-zinc-800 pt-5">
                     <p className="text-[10px] tracking-[0.2em] text-zinc-600 mb-3">ABOUT</p>
-                    <p className="text-sm text-zinc-400 leading-relaxed tracking-wide">
+                    <p className="text-xs text-zinc-400 leading-relaxed tracking-wide">
                       {member.description}
                     </p>
                   </div>

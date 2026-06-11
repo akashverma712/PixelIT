@@ -5,10 +5,9 @@ import { useEffect, useState } from "react";
 import PixelSnow from "./components/PixelSnow";
 import Navbar from "./components/Navbar";
 import WhoWeAre from "./components/Home/WhoWeAre";
-// import Methodology from "./components/Home/Methodology";
 import Competencies from "./components/Home/services";
 import WhyPixelIT from "./components/Home/WhyPixelIT";
-import Footer from "./components/Footer";
+
 import ContactPage from "./contact/page";
 
 function PixelatedText({
@@ -62,12 +61,9 @@ function PixelatedText({
 }
 
 export default function Home() {
-  const [loading, setLoading] = useState(true);
+ 
 
-  useEffect(() => {
-    const timer = setTimeout(() => setLoading(false), 3000);
-    return () => clearTimeout(timer);
-  }, []);
+
 
   const scrollToContent = () => {
     document.getElementById("who-we-are")?.scrollIntoView({
@@ -79,24 +75,8 @@ export default function Home() {
   return (
     <>
       <div className="relative w-full h-screen overflow-hidden bg-black">
-        <AnimatePresence>
-          {loading && (
-            <motion.div
-              className="fixed inset-0 z-[999] flex flex-col items-center justify-center bg-black"
-              initial={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.6 }}
-            >
-              <img
-                src="/pacman.gif"
-                alt="Loading..."
-                className="w-32 h-32 mb-6"
-              />
-            </motion.div>
-          )}
-        </AnimatePresence>
+       
 
-        {!loading && (
           <>
             <Navbar />
 
@@ -191,18 +171,16 @@ export default function Home() {
               </motion.div>
             </motion.div>
           </>
-        )}
+        
       </div>
 
-      {!loading && (
         <>
           <WhoWeAre />
           <Competencies />
           <WhyPixelIT />
           <ContactPage />
-          {/* <Footer /> */}
         </>
-      )}
+     
     </>
   );
 }
