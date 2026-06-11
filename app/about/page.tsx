@@ -1,6 +1,6 @@
 'use client';
 import { motion } from "framer-motion";
-import BentoGrid from "../components/BentoGrid";
+import Methodology from "../components/Home/Methodology";
 import { useState } from "react";
 import Navbar from "../components/Navbar";
 import PixelCard from "../components/PixelCard";
@@ -170,12 +170,10 @@ export default function AboutPage() {
           </div>
         </section>
 
-        <section className="py-24">
-          <h2 className="text-4xl tracking-widest text-center mb-12">
-            WHAT WE <span className="text-yellow-400">DO</span>
-          </h2>
-          <BentoGrid />
-        </section>
+     
+         
+          <Methodology />
+     
 
         <FAQ />
         <Footer />
