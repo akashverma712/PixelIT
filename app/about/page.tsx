@@ -3,18 +3,10 @@ import { motion } from "framer-motion";
 import BentoGrid from "../components/BentoGrid";
 import { useState } from "react";
 import Navbar from "../components/Navbar";
-import InfiniteMenu from "../components/InfiniteMenu";
 import PixelCard from "../components/PixelCard";
 import Footer from "../components/Footer";
 import FAQ from "../components/FAQ";
 import TeamPopup from "../components/TeamPopup";
-
-const items = [
-  { image: "/pixelit_logo.png", link: "#", title: "", description: "" },
-  { image: "/pixelit_logo.png", link: "#", title: "", description: "" },
-  { image: "/pixelit_logo.png", link: "#", title: "", description: "" },
-  { image: "/pixelit_logo.png", link: "#", title: "", description: "" },
-];
 
 type Member = {
   name: string;
@@ -157,15 +149,6 @@ export default function AboutPage() {
                 transition={{ duration: 0.9, ease: "easeOut" }}
               />
             </div>
-          </div>
-        </section>
-
-        <section className="space-y-10">
-          <h2 className="text-4xl tracking-widest text-center">
-            WHAT WE <span className="text-yellow-400">DO</span>
-          </h2>
-          <div className="relative h-150 border-2 border-zinc-800 bg-zinc-950 rounded-xl overflow-hidden">
-            <InfiniteMenu items={items} scale={1} />
           </div>
         </section>
 

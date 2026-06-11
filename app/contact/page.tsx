@@ -5,15 +5,25 @@ import { motion, AnimatePresence } from "framer-motion";
 import emailjs from '@emailjs/browser';
 import Navbar from "../components/Navbar";
 import ReflectiveCard from "../components/ReflectiveCard";
+import Footer from "../components/Footer";
+
+type ToastType = { message: string; status: 'success' | 'error' } | null;
 
 export default function ContactPage() {
   const [showJoin, setShowJoin] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [toast, setToast] = useState<ToastType>(null);
   const formRef = useRef<HTMLFormElement>(null);
 
   useEffect(() => {
     document.body.style.overflow = showJoin ? "hidden" : "auto";
   }, [showJoin]);
+
+  useEffect(() => {
+    if (!toast) return;
+    const t = setTimeout(() => setToast(null), 4000);
+    return () => clearTimeout(t);
+  }, [toast]);
 
   const handleServicesSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -39,12 +49,12 @@ export default function ContactPage() {
       'xCLYUGuk1kn_GBq62'
     )
     .then(() => {
-      alert('Your inquiry has been sent successfully to our team!');
+      setToast({ message: 'YOUR INQUIRY HAS BEEN SENT SUCCESSFULLY.', status: 'success' });
       formRef.current?.reset();
     })
     .catch((error) => {
       console.error('EmailJS Submission Error:', error);
-      alert('Failed to send the message. Please check the browser console.');
+      setToast({ message: 'FAILED TO SEND. PLEASE TRY AGAIN.', status: 'error' });
     })
     .finally(() => {
       setIsSubmitting(false);
@@ -57,6 +67,42 @@ export default function ContactPage() {
       style={{ fontFamily: "var(--font-pixel)" }}
     >
       <Navbar />
+
+      <AnimatePresence>
+        {toast && (
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.3 }}
+            className="fixed top-24 left-1/2 -translate-x-1/2 z-[100] flex items-center gap-4 px-6 py-4 border-2 bg-black"
+            style={{
+              borderColor: toast.status === 'success' ? '#facc15' : '#ef4444',
+              minWidth: '320px',
+              maxWidth: '90vw',
+            }}
+          >
+            <span
+              className="text-lg"
+              style={{ color: toast.status === 'success' ? '#facc15' : '#ef4444' }}
+            >
+              {toast.status === 'success' ? '✦' : '✕'}
+            </span>
+            <p
+              className="text-xs tracking-widest flex-1"
+              style={{ color: toast.status === 'success' ? '#facc15' : '#ef4444' }}
+            >
+              {toast.message}
+            </p>
+            <button
+              onClick={() => setToast(null)}
+              className="text-zinc-500 hover:text-white text-sm ml-2"
+            >
+              ✕
+            </button>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       <div className="max-w-7xl mx-auto px-6 pt-36 pb-20">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
@@ -71,7 +117,7 @@ export default function ContactPage() {
             </h1>
 
             <p className="text-zinc-400 mb-12 max-w-md leading-relaxed tracking-wide">
-              From websites and graphics to automation, webinars and seminars —
+              From scalable systems and graphics to automation, webinars and seminars —
               we craft solutions that actually work.
             </p>
 
@@ -138,7 +184,7 @@ export default function ContactPage() {
                 disabled={isSubmitting}
                 className="w-full border-2 border-yellow-400 text-yellow-400 py-4 tracking-widest hover:bg-yellow-400 hover:text-black transition disabled:opacity-50 uppercase"
               >
-                {isSubmitting ? 'Sending...' : 'SEND MESSAGE →'}
+                {isSubmitting ? 'SENDING...' : 'SEND MESSAGE →'}
               </button>
             </form>
           </div>
@@ -153,17 +199,17 @@ export default function ContactPage() {
             </div>
 
             <div className="border-2 border-zinc-800 p-5 flex items-center gap-4">
-              <div className="h-12 w-12 flex items-center justify-center border border-green-500 text-green-500">
+              <div className="h-12 w-12 flex-shrink-0 flex items-center justify-center border border-green-500 text-green-500">
                 📞
               </div>
               <div>
                 <p className="tracking-widest text-sm">PHONE</p>
-                <p className="text-xs text-zinc-400">+91 7479676602</p>
+                <p className="text-xs text-zinc-400">+91 74796 76602; +91 74800 52919</p>
               </div>
             </div>
 
             <div className="border-2 border-zinc-800 p-5 flex items-center gap-4">
-              <div className="h-12 w-12 flex items-center justify-center border border-blue-500 text-blue-500">
+              <div className="h-12 w-12 flex-shrink-0 flex items-center justify-center border border-blue-500 text-blue-500">
                 ✉️
               </div>
               <div>
@@ -195,23 +241,24 @@ export default function ContactPage() {
               animate={{ scale: 1, y: 0 }}
               exit={{ scale: 0.92, y: 20 }}
               transition={{ duration: 0.3 }}
-              className="relative w-full max-w-5xl bg-zinc-950 border-2 border-zinc-800 p-6 md:p-8"
+              className="relative w-full max-w-5xl bg-zinc-950 border-2 border-zinc-800 p-5 md:p-8"
             >
               <button
                 onClick={() => setShowJoin(false)}
-                className="absolute top-4 right-4 text-zinc-400 hover:text-white text-lg"
+                className="absolute top-4 right-4 text-zinc-400 hover:text-white text-lg z-10"
               >
                 ✕
               </button>
 
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
-                <div className="space-y-4">
-                  <h2 className="text-3xl tracking-widest mb-2">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-10 items-center">
+                <div className="space-y-3">
+                  <h2 className="text-2xl md:text-3xl tracking-widest">
                     JOIN <span className="text-yellow-400">PIXELIT</span>
                   </h2>
 
-                  <p className="text-zinc-500 text-xs tracking-widest">
-                    APPLICATIONS CURRENTLY CLOSED. CHECK BACK SOON.
+                  <p className="text-zinc-400 text-xs tracking-widest leading-relaxed">
+                    WE WILL BE STARTING THE JOINING PROCESS SOON. TILL THEN KEEP{" "}
+                    <span className="text-blue-500">PIXELIZING</span>.
                   </p>
 
                   {[
@@ -225,26 +272,26 @@ export default function ContactPage() {
                       key={field}
                       placeholder={field}
                       disabled
-                      className="w-full bg-zinc-900 border-2 border-zinc-800 px-4 py-3 text-zinc-600 outline-none cursor-not-allowed opacity-50"
+                      className="w-full bg-zinc-900 border-2 border-zinc-700 px-4 py-3 text-zinc-400 placeholder-zinc-500 outline-none cursor-not-allowed opacity-60"
                     />
                   ))}
 
                   <textarea
-                    rows={3}
+                    rows={2}
                     placeholder="WHY DO YOU WANT TO JOIN PIXELIT?"
                     disabled
-                    className="w-full bg-zinc-900 border-2 border-zinc-800 px-4 py-3 text-zinc-600 outline-none resize-none cursor-not-allowed opacity-50"
+                    className="w-full bg-zinc-900 border-2 border-zinc-700 px-4 py-3 text-zinc-400 placeholder-zinc-500 outline-none resize-none cursor-not-allowed opacity-60"
                   />
 
                   <button
                     disabled
-                    className="w-full border-2 border-zinc-700 py-4 text-zinc-600 tracking-widest cursor-not-allowed opacity-50"
+                    className="w-full border-2 border-zinc-700 py-3 text-zinc-500 tracking-widest cursor-not-allowed opacity-60"
                   >
                     SUBMIT →
                   </button>
                 </div>
 
-                <div className="flex justify-center">
+                <div className="hidden lg:flex justify-center">
                   <ReflectiveCard />
                 </div>
               </div>
@@ -252,6 +299,7 @@ export default function ContactPage() {
           </motion.div>
         )}
       </AnimatePresence>
+      <Footer />
     </div>
   );
 }
