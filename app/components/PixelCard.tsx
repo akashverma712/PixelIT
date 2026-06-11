@@ -134,15 +134,15 @@ const VARIANTS = {
     noFocus: false
   },
   yellow: {
-    gap: 3,
+    gap: 6,
     speed: 20,
-    colors: '#fef08a,#fde047,#eab308',
+    colors: '#fef9c3,#fde047,#facc15',
     noFocus: false
   },
   pink: {
     gap: 6,
     speed: 80,
-    colors: '#fecdd3,#fda4af,#e11d48',
+    colors: '#ffffff,#fda4af,#e11d48',
     noFocus: true
   }
 };
@@ -248,8 +248,13 @@ export default function PixelCard({
   };
 
   const trigger = (method: keyof Pixel) => {
-    if (animationRef.current) cancelAnimationFrame(animationRef.current);
-    animationRef.current = requestAnimationFrame(() => animate(method));
+    if (animationRef.current !== null) {
+      cancelAnimationFrame(animationRef.current);
+    }
+
+    animationRef.current = requestAnimationFrame(() =>
+      animate(method)
+    );
   };
 
   useEffect(() => {
@@ -259,7 +264,9 @@ export default function PixelCard({
 
     return () => {
       observer.disconnect();
-      animationRef.current && cancelAnimationFrame(animationRef.current);
+      if (animationRef.current !== null) {
+        cancelAnimationFrame(animationRef.current);
+      }
     };
   }, [finalGap, finalSpeed, finalColors]);
 
@@ -271,8 +278,12 @@ export default function PixelCard({
       onMouseLeave={() => trigger('disappear')}
       tabIndex={finalNoFocus ? -1 : 0}
     >
-      <canvas ref={canvasRef} className="absolute inset-0 w-full h-full" />
-      <div className="relative z-10 w-full h-full p-6 flex flex-col justify-end">
+      <canvas
+        ref={canvasRef}
+        className="absolute inset-0 w-full h-full z-20 pointer-events-none mix-blend-screen"
+      />
+
+      <div className="relative z-10 w-full h-full">
         {children}
       </div>
     </div>
