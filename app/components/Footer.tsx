@@ -56,7 +56,7 @@ export default function Footer() {
           <div className="flex gap-5">
            
 
-            <a href="#" className="text-zinc-400 hover:text-yellow-400 transition">
+            <a href="https://www.instagram.com/_pixelit_/" className="text-zinc-400 hover:text-yellow-400 transition">
               <svg
                 width="20"
                 height="20"
@@ -73,7 +73,7 @@ export default function Footer() {
               </svg>
             </a>
 
-            <a href="#" className="text-zinc-400 hover:text-yellow-400 transition">
+            <a href="https://www.linkedin.com/company/pixelit-in/" className="text-zinc-400 hover:text-yellow-400 transition">
               <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M4.98 3.5A2.48 2.48 0 1 1 5 8.46a2.48 2.48 0 0 1-.02-4.96zM3 21.5h4V9h-4v12.5zM9 9h3.8v1.71h.05c.53-1 1.83-2.06 3.77-2.06 4.03 0 4.78 2.65 4.78 6.1v6.75h-4v-6c0-1.43-.03-3.26-1.99-3.26-1.99 0-2.29 1.55-2.29 3.15v6.11H9V9z" />
               </svg>

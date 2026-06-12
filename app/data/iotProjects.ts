@@ -4,15 +4,15 @@ export const iotProjects = [
     image: "/automation3.png",
     description:
       "Smart adaptive headlight system that detects oncoming vehicles and selectively controls LED beams to eliminate glare while maintaining optimal road visibility and safety.",
-    technologies: ["L28N motor driver", "Arduino UNO", "Max 7219 LED Matrix"],
+    technologies: ["L28N motor driver", "Arduino UNO", "Max 7219 LED Matrix", "HC-SR04 Ultrasonic Sensor"],
     projectLink: "#",
   },
 
   {
-    title: "𝐀𝐒𝐀𝐒𝐍𝐈 (Armed Semi-Automated Sniper Rifle)",
+    title: "ASASNI (Armed Semi-Automated Sniper Rifle)",
     image: "/automation2.png",
     description:
-      "Real-time industrial monitoring dashboard with predictive alerts.",
+      "AI driven automated sniper rifle.",
     technologies: ["Node.js", "IoT Sensors", "Firebase"],
     projectLink: "#",
   },
