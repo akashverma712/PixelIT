@@ -17,7 +17,7 @@ type Member = {
 
 export default function AboutPage() {
   const topRow: Member[] = [
-    {
+    { 
       name: "Akash Verma",
       role: "Founder",
       skill: "Software Developer",
@@ -158,14 +158,14 @@ export default function AboutPage() {
           <div className="space-y-6">
             <div className="border-2 border-zinc-800 bg-zinc-950 p-6 rounded-xl flex justify-center">
               <img
-                src="/pixelit_logo.png"
+                src="/pixelit_wordmark.png"
                 alt="PixelIt Logo"
                 className="h-10 object-contain opacity-90"
               />
             </div>
             <div className="border-2 border-zinc-800 bg-zinc-950 p-6 rounded-xl overflow-hidden">
               <motion.img
-                src="/team.jpeg"
+                src="/logo2.png"
                 alt="PixelIt Team"
                 className="w-full max-w-sm mx-auto rounded-lg opacity-90"
                 initial={{ scale: 1.1, opacity: 0 }}

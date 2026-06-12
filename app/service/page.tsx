@@ -32,7 +32,7 @@ const domains = [
   {
     title: "AUTOMATION & IOT",
     route: "/service/iot",
-    scramble: "SMART ECOSYSTEM INTEGRATION",
+    scramble: "INTELLIGENT CONNECTIVITY & AUTOMATION",
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2">
         <path d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z" />
@@ -42,26 +42,21 @@ const domains = [
       "Developing intelligent IoT and automation solutions that connect devices, streamline operations, enable real-time monitoring, and unlock smarter decision-making.",
   },
   {
-    title: "VIDEO EDITING",
+    title: "GRAPHICS DESIGNING & VIDEO EDITING",  
     route: "/service",
-    scramble: "CINEMATIC CONTENT ENGINEERING",
+    scramble: "VISUAL STORYTELLING & CREATIVE CONTENT",
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2">
         <path d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
       </svg>
     ),
     description:
-      "Transforming ideas into compelling visual stories through professional editing, motion graphics, color grading, sound design, and cinematic post-production workflows.",
+      "Crafting visually stunning graphics and compelling video content that captivates audiences, elevates brands, and tells powerful stories through innovative design and editing techniques.",
   },
-
-  
-
- 
-
-  {
+ {
     title: "WEBINARS & SEMINARS",
     route: "/service",
-    scramble: "DIGITAL KNOWLEDGE EXPERIENCES",
+    scramble: "IMMERSIVE LEARNING & PROFESSIONAL GROWTH",
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2">
         <path d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />

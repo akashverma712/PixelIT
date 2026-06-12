@@ -11,13 +11,7 @@ type CompetencyType = {
 };
 
 const competencies: CompetencyType[] = [
-  {
-    title: 'GRAPHIC DESIGNING AND VIDEO EDITING',
-    image: '/gfx.png',
-    link: '/service',
-    description:
-      'We create and shoot compelling visual narratives that captivate audiences and elevate brands. Our expertise in graphic design and video editing allows us to craft stunning visuals that resonate with your target audience and leave a lasting impression.',
-  },
+
   {
     title: 'SOFTWARE DEVELOPMENT',
     image: '/webd.png',
@@ -31,6 +25,13 @@ const competencies: CompetencyType[] = [
     link: '/service/iot',
     description:
       'We harness the power of IoT and automation to create intelligent solutions that enhance efficiency, connectivity, and user experience. From smart devices to automated systems, we bring the future of technology to life.',
+  },
+  {
+    title: 'GRAPHIC DESIGNING AND VIDEO EDITING',
+    image: '/gfx.png',
+    link: '/service',
+    description:
+      'We create and shoot compelling visual narratives that captivate audiences and elevate brands. Our expertise in graphic design and video editing allows us to craft stunning visuals that resonate with your target audience and leave a lasting impression.',
   },
   {
     title: 'WEBINARS & SEMINARS',

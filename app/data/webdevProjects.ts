@@ -1,36 +1,51 @@
 export const webdevProjects = [
   {
-    title: "Pixel Commerce",
+    title: "Just Say Banana",
 
     image:
-      "https://images.unsplash.com/photo-1460925895917-afdab827c52f",
+      "/web_project1.png",
 
     description:
-      "Enterprise-grade ecommerce platform built with Next.js and MongoDB.",
+      "A website for the book release of Kristi Kaylor's 'Just Say Banana'.",
 
     technologies: [
-      "Next.js",
-      "TypeScript",
-      "MongoDB",
+      "JavaScript",
       "Tailwind",
     ],
 
-    projectLink: "#",
+    projectLink: "https://www.justsaybanana.com/",
   },
 
   {
-    title: "Pixel Portfolio",
+    title: "Sia Restaurant Website",
 
     image:
-      "https://images.unsplash.com/photo-1498050108023-c5249f4df085",
+      "/web_project2.png",
 
     description:
-      "Modern animated portfolio platform.",
+      "A modern animated website for Sia Restaurant, showcasing their menu, ambiance, and unique dining experience.",
 
     technologies: [
       "React",
       "GSAP",
       "Framer Motion",
+    ],
+
+    projectLink: "https://siarestaurant.vercel.app/",
+  },
+
+  {
+    title: "Sia Restaurant Automation",
+
+    image:
+    "/web_project3.png",
+
+    description:
+      "Sia restaurant automation and backend system[Project Pending].",
+
+    technologies: [
+      "React",
+      "Supabase",
     ],
 
     projectLink: "#",

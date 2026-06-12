@@ -10,7 +10,7 @@ export default function Footer() {
 
         <div className="space-y-4">
           <img
-            src="/pixelit_logo.png"
+            src="/pixelit_wordmark.png"
             alt="PixelIt"
             className="w-32 opacity-90"
           />
@@ -41,11 +41,10 @@ export default function Footer() {
           </h4>
 
           <ul className="space-y-2 text-sm text-zinc-400">
-            <li><Link href="/service/webdev" className="hover:text-white transition">Web Development</Link></li>
-            <li><Link href="/service/graphics" className="hover:text-white transition">Graphic Design</Link></li>
-            <li><Link href="/service/video" className="hover:text-white transition">Video Editing</Link></li>
-            <li><Link href="/service/automation" className="hover:text-white transition">Automation & Robotics</Link></li>
-            <li><Link href="/service/webinars" className="hover:text-white transition">Webinars & Seminars</Link></li>
+            <li><Link href="/service/webdev" className="hover:text-white transition">Software Development</Link></li>
+            <li><Link href="/service/iot" className="hover:text-white transition">Automation & IOT</Link></li>
+            <li><Link href="/service" className="hover:text-white transition">Graphic Design</Link></li>
+            <li><Link href="/service" className="hover:text-white transition">Webinars & Seminars</Link></li>
           </ul>
         </div>
 

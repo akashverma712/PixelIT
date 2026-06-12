@@ -45,7 +45,7 @@ export default function Navbar() {
       <div className="w-full px-10 py-5 flex items-center justify-between">
         {/* LOGO */}
         <Link href="/" className="select-none">
-          <img src="/pixelit_logo.png" alt="Pixelit Logo" className="h-5" />
+          <img src="/pixelit_wordmark.png" alt="Pixelit Logo" className="h-5" />
         </Link>
 
         {/* DESKTOP NAV */}
