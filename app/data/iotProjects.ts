@@ -1,10 +1,10 @@
 export const iotProjects = [
   {
-    title: "Smart Home System",
+    title: "VisionX",
     image: "/automation3.png",
     description:
-      "IoT-based smart home automation with sensors, MQTT and mobile control.",
-    technologies: ["Arduino", "Raspberry Pi", "MQTT"],
+      "Smart adaptive headlight system that detects oncoming vehicles and selectively controls LED beams to eliminate glare while maintaining optimal road visibility and safety.",
+    technologies: ["L28N motor driver", "Arduino UNO", "Max 7219 LED Matrix"],
     projectLink: "#",
   },
 

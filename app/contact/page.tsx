@@ -192,7 +192,7 @@ export default function ContactPage() {
           <div className="space-y-8">
             <div className="border-2 border-zinc-800 bg-zinc-900 flex justify-center p-10">
               <img
-                src="/pixelit_logo.png"
+                src="/pixelit_wordmark.png"
                 alt="PixelIt"
                 className="max-w-xs w-full object-contain"
               />

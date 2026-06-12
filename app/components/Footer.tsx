@@ -54,11 +54,7 @@ export default function Footer() {
           </h4>
 
           <div className="flex gap-5">
-            <a href="#" className="text-zinc-400 hover:text-yellow-400 transition">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24h-6.654l-5.214-6.817L4.99 21.75H1.68l7.73-8.84L1.25 2.25h6.826l4.713 6.231L18.244 2.25z" />
-              </svg>
-            </a>
+           
 
             <a href="#" className="text-zinc-400 hover:text-yellow-400 transition">
               <svg
